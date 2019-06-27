@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name"></string>
+
+    <string name="inicio">Home</string>
+    <string name="buscar">Search</string>
+
+    <string name="busqueda">Place</string>
+    <string name="registro">Profile</string>
+</resources>
