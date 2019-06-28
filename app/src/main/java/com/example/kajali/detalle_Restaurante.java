@@ -25,8 +25,17 @@ public class detalle_Restaurante extends AppCompatActivity {
     Registro_Restaurantes registroR= new Registro_Restaurantes();
     private static final String NOMBRE_DB="appkajali";
     private static SQLiteDatabase db;
-    public static final String tRestaurantes= "CREATE TABLE IF NOT EXISTS appRestaurantes("+"id INTEGER PRIMARY KEY AUTOINCREMENT," +" nombreR VARCHAR NOT NULL,"+" telefonoR VARCHAR NOT NULL,"+"descripcionR VARCHAR NOT NULL,"+
-            "horarioR VARCHAR NOT NULL,"+"imgR VARCHAR,"+"platoD VARCHAR,"+"provinciaR VARCHAR NOT NULL,"+"categoriaR VARCHAR NOT NULL);";
+
+    public static final String tRestaurantes= "CREATE TABLE IF NOT EXISTS appRestaurantes("+
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            " nombreR VARCHAR NOT NULL,"+
+            " telefonoR VARCHAR NOT NULL,"+
+            "descripcionR VARCHAR NOT NULL,"+
+            "horarioR VARCHAR NOT NULL,"+
+            "imgR VARCHAR,"+
+            "platoD VARCHAR,"+
+            "provinciaR VARCHAR NOT NULL,"+
+            "categoriaR VARCHAR NOT NULL);";
 
 
 
