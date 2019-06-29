@@ -60,30 +60,5 @@ public class Registro_Restaurantes {
         return lista;
     }
 
-    public  ArrayList<Restaurantes> getRestauranteFiltrado(SQLiteDatabase db)
-    {
-        Cursor cursor= db.query(INFO_Restaurantes, new String[]{"id", "nombreR","telefonoR","descripcionR","horarioR","imgR","platoD","provinciaR","categoriaR"}, null, null, null, null,"id desc" );
-        cursor.moveToFirst();
-        ArrayList<Restaurantes> lista= new ArrayList<>();
-        while (!cursor.isAfterLast()){
-            Restaurantes rest= new Restaurantes();
-                rest.setId(cursor.getInt(0));
-                rest.setNombreR(cursor.getString(1));
-                rest.setTelefonoR(cursor.getString(2));
-                rest.setDescripcionR(cursor.getString(3));
-                rest.setHorarioR(cursor.getString(4));
-                rest.setImgR(Uri.parse(cursor.getString(5)));
-                rest.setPlatoD(Uri.parse(cursor.getString(6)));
-                rest.setProvinciaR(cursor.getString(7));
-                rest.setCategoriaR(cursor.getString(8));
-
-                lista.add(rest);
-                cursor.moveToNext();
-
-
-        }
-        cursor.close();
-        return lista;
-    }
 
 }//fin de la class

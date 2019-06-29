@@ -1,6 +1,7 @@
 package com.example.kajali;
 
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOutOfMemoryException;
 import android.net.Uri;
@@ -40,7 +41,7 @@ public class busquedaRestaurantes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lyt_busqueda);
         createDatabase();
-        listaRestaurantes = registroR.getRestaurante(db);
+
 
         //  creamos la relacion grafica/logica
         listaProvincia=findViewById(R.id.listaResultadosBusqueda);
@@ -57,23 +58,25 @@ public class busquedaRestaurantes extends AppCompatActivity {
         // Mostrar los campos del arreglo en el desplegable del spinner
         ArrayAdapter<String>adapterProvincia = new ArrayAdapter<String>( this, android.R.layout.simple_spinner_item, provincias);
         busquedaProvincia.setAdapter(adapterProvincia);
+        //String seleccionProvincia = busquedaProvincia.getSelectedItem().toString();
 
-        String seleccionProvincia = busquedaProvincia.getSelectedItem().toString();
 
 
         btn_Buscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomAdapter custonAdapter = new CustomAdapter(getApplicationContext(), listaRestaurantes);
-                listaProvincia.setAdapter(custonAdapter);
+                if (getInw(db).isEmpty()){
+                    Toast.makeText(getApplicationContext(),"No hay restaurantes registrado",Toast.LENGTH_SHORT).show();
+                }else {
+                    listaRestaurantes = getInw(db);
+                    CustomAdapter custonAdapter = new CustomAdapter(getApplicationContext(), listaRestaurantes);
+                    listaProvincia.setAdapter(custonAdapter);
+                }
+
             }
         });
 
     }// fin del oncreate
-
-    /////////////////////// CREACION DE BUSQUEDA POR CATEGORIA ////////////////
-
-
 
 
     public void createDatabase(){
@@ -84,5 +87,40 @@ public class busquedaRestaurantes extends AppCompatActivity {
         } catch (SQLiteOutOfMemoryException e){
             e.printStackTrace();
         }
-    }
+    }// fin del create database
+
+    public ArrayList<Restaurantes> getInw(SQLiteDatabase db )throws SQLException {
+        String seleccionProvincia = busquedaProvincia.getSelectedItem().toString();
+
+        Cursor c= db.query("appRestaurantes", new String[]{"id", "nombreR","telefonoR","descripcionR","horarioR","imgR","platoD","provinciaR","categoriaR"},"provinciaR LIKE '"+ seleccionProvincia +"'",null , null, null, null,null );
+
+        c.moveToFirst();
+
+        ArrayList<Restaurantes> list = new ArrayList<>();
+
+        while (!c.isAfterLast()) {
+
+            Restaurantes restaurante = new Restaurantes();
+
+
+            restaurante.setId(c.getInt(0));
+            restaurante.setNombreR(c.getString(1));
+            restaurante.setTelefonoR(c.getString(2));
+            restaurante.setDescripcionR(c.getString(3));
+            restaurante.setHorarioR(c.getString(4));
+            restaurante.setImgR(Uri.parse(c.getString(5)));
+            restaurante.setPlatoD(Uri.parse(c.getString(6)));
+            restaurante.setProvinciaR(c.getString(7));
+            restaurante.setCategoriaR(c.getString(8));
+
+
+
+            list.add(restaurante);
+
+            c.moveToNext();
+        }
+        c.close();
+        return list;
+
+    }// fin de metodo getInw
 }//  fin de la clase  busqueda de restaurante
