@@ -92,9 +92,6 @@ public class busquedaRestaurantes extends AppCompatActivity {
                     startActivity(intent);
                 } else if (item.getItemId() == R.id.buscarLupaItem) {
 
-                }  else if (item.getItemId() == R.id.busquedaItem) {
-                    Toast.makeText(getApplicationContext(), "No esta disponible", Toast.LENGTH_SHORT).show();
-
                 } else if (item.getItemId() == R.id.registroItem) {
                     Intent intent = new Intent(busquedaRestaurantes.this,LoginUser.class);
                     startActivity(intent);

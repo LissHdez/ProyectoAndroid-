@@ -44,9 +44,6 @@ public class lista_Restaurantes extends AppCompatActivity {
         createDatabase();
         lista=findViewById(R.id.lv_listaR);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
-     // btnLogin=findViewById(R.id.btnLogin);
-      //btnMain=findViewById(R.id.btnMain);
-      //btnDetalle=findViewById(R.id.btnDetalle);
 
          list=registroR.getRestaurante(db);
 
@@ -84,9 +81,6 @@ public class lista_Restaurantes extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.buscarLupaItem) {
                     Intent intent = new Intent(lista_Restaurantes.this,busquedaRestaurantes.class);
                     startActivity(intent);
-                }  else if (item.getItemId() == R.id.busquedaItem) {
-                    Toast.makeText(getApplicationContext(), "No esta disponible", Toast.LENGTH_SHORT).show();
-
                 } else if (item.getItemId() == R.id.registroItem) {
                     Intent intent = new Intent(lista_Restaurantes.this,LoginUser.class);
                     startActivity(intent);

@@ -2,8 +2,9 @@
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textSize="18sp"
-    android:padding="7sp"
-    android:textColor="#686767"
-    android:fontFamily="@font/montserrat_bold"
+    android:textSize="20sp"
+    android:padding="10sp"
+    android:textColor="#6B6565"
+    android:fontFamily="@font/montserrat"
+    android:layout_marginTop="60dp"
     xmlns:android="http://schemas.android.com/apk/res/android" />
