@@ -1,13 +1,17 @@
 package com.example.kajali;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOutOfMemoryException;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,6 +34,8 @@ public class busquedaRestaurantes extends AppCompatActivity {
     ArrayList<Restaurantes> listaRestaurantes;
     ArrayAdapter<Restaurantes> adapterRestaurantes;
     ListView listaProvincia;
+    private BottomNavigationView bottomNavigationView;
+    public final String INFO_Restaurantes ="appRestaurantes";
 
     private static final String NOMBRE_DB="appkajali";
     private static SQLiteDatabase db;
@@ -46,17 +52,16 @@ public class busquedaRestaurantes extends AppCompatActivity {
         //  creamos la relacion grafica/logica
         listaProvincia=findViewById(R.id.listaResultadosBusqueda);
         busquedaProvincia=findViewById(R.id.spProvinicia);
-        busquedaCategoria=findViewById(R.id.spCategoria);
         btn_Buscar=findViewById(R.id.btnBuscar);
-
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // creacion del arreglo para cada provincia del spinnerProvincias
         String  [] provincias ={ "Alajuela", "Cartago","Guanacaste","Heredia",
-                "Limon", "Puntarenas", "San Jose" };
+                "Limon", "Puntarenas", "SanJosé" };
 
         // Mostrar los campos del arreglo en el desplegable del spinner
-        ArrayAdapter<String>adapterProvincia = new ArrayAdapter<String>( this, android.R.layout.simple_spinner_item, provincias);
+        ArrayAdapter<String>adapterProvincia = new ArrayAdapter<String>( this, R.layout.spinner_item_provincias, provincias);
         busquedaProvincia.setAdapter(adapterProvincia);
         //String seleccionProvincia = busquedaProvincia.getSelectedItem().toString();
 
@@ -76,6 +81,28 @@ public class busquedaRestaurantes extends AppCompatActivity {
             }
         });
 
+
+        /// menu navegacion inferior
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                if (item.getItemId() == R.id.inicioItem) {
+                    Intent intent = new Intent(busquedaRestaurantes.this,lista_Restaurantes.class);
+                    startActivity(intent);
+                } else if (item.getItemId() == R.id.buscarLupaItem) {
+
+                }  else if (item.getItemId() == R.id.busquedaItem) {
+                    Toast.makeText(getApplicationContext(), "No esta disponible", Toast.LENGTH_SHORT).show();
+
+                } else if (item.getItemId() == R.id.registroItem) {
+                    Intent intent = new Intent(busquedaRestaurantes.this,LoginUser.class);
+                    startActivity(intent);
+                }
+
+                return true;
+            }
+        });
     }// fin del oncreate
 
 
@@ -92,8 +119,8 @@ public class busquedaRestaurantes extends AppCompatActivity {
     public ArrayList<Restaurantes> getInw(SQLiteDatabase db )throws SQLException {
         String seleccionProvincia = busquedaProvincia.getSelectedItem().toString();
 
-        Cursor c= db.query("appRestaurantes", new String[]{"id", "nombreR","telefonoR","descripcionR","horarioR","imgR","platoD","provinciaR","categoriaR"},"provinciaR LIKE '"+ seleccionProvincia +"'",null , null, null, null,null );
-
+        //Cursor c= db.query("appRestaurantes", new String[]{"id", "nombreR","telefonoR","descripcionR","horarioR","imgR","platoD","provinciaR","categoriaR"},"provinciaR LIKE '"+ seleccionProvincia +"'",null , null, null, null,null );
+        Cursor c = db.rawQuery("select * from " + INFO_Restaurantes+" where provinciaR =?", new String[]{seleccionProvincia});
         c.moveToFirst();
 
         ArrayList<Restaurantes> list = new ArrayList<>();

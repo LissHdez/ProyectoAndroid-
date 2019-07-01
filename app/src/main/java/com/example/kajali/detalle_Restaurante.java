@@ -6,10 +6,13 @@ import android.database.sqlite.SQLiteOutOfMemoryException;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.kajali.Modelo.CustomAdapter;
+import com.example.kajali.Modelo.MapsActivity;
 import com.example.kajali.Modelo.Registro_Restaurantes;
 import com.example.kajali.Modelo.Restaurantes;
 
@@ -25,6 +28,7 @@ public class detalle_Restaurante extends AppCompatActivity {
     Registro_Restaurantes registroR= new Registro_Restaurantes();
     private static final String NOMBRE_DB="appkajali";
     private static SQLiteDatabase db;
+    Button btn_verMapa;
 
     public static final String tRestaurantes= "CREATE TABLE IF NOT EXISTS appRestaurantes("+
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -52,6 +56,7 @@ public class detalle_Restaurante extends AppCompatActivity {
         TextView nombre= findViewById(R.id.dNombre);
         TextView telefono= findViewById(R.id.dTelefono);
         TextView horario=findViewById(R.id.dHorario);
+        Button btn_verMapa=findViewById(R.id.btnVerMap);
 
 
         Intent intent = getIntent();
@@ -86,6 +91,19 @@ public class detalle_Restaurante extends AppCompatActivity {
         }else{
             imagen2.setImageURI(rest.getPlatoD());
         }
+
+
+        ///////////////////////////////////////////////////////
+
+        btn_verMapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+            Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+            startActivity(intent);
+
+
+            }// fin del onclick
+        });// fin del boton
     }//fin del oncreate
 
 

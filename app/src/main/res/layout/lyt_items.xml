@@ -37,30 +37,30 @@
             android:layout_marginTop="80dip"
             android:fontFamily="@font/montserrat"
             android:text="TextView"
-            android:textSize="14sp"
-            android:textColor="#333" />
+            android:textColor="#333"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tTelefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="190dip"
-            android:layout_marginTop="130dip"
-            android:textSize="14sp"
+            android:layout_marginLeft="195dp"
+            android:layout_marginTop="120dp"
             android:fontFamily="@font/montserrat"
             android:text="TextView"
-            android:textColor="#333" />
+            android:textColor="#333"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tHorario"
             android:layout_width="185dp"
             android:layout_height="43dp"
-            android:layout_marginLeft="190dp"
+            android:layout_marginLeft="195dp"
             android:layout_marginTop="160dp"
             android:fontFamily="@font/montserrat"
             android:text="TextView"
-            android:textSize="14sp"
-            android:textColor="#333" />
+            android:textColor="#333"
+            android:textSize="14sp" />
 
         <ImageView
             android:id="@+id/tImgR"
@@ -71,6 +71,22 @@
             app:srcCompat="@drawable/g836" />
 
         <ImageView
+            android:id="@+id/cel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="118dp"
+            app:srcCompat="@drawable/telef" />
+
+        <ImageView
+            android:id="@+id/reloj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="160dp"
+            app:srcCompat="@drawable/reloj" />
+
+        <ImageView
             android:id="@+id/imageView2"
             android:layout_width="123dp"
             android:layout_height="27dp"
@@ -79,20 +95,12 @@
             app:srcCompat="@drawable/g902" />
 
         <ImageView
-            android:id="@+id/cel"
+            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="160dp"
-            android:layout_marginTop="118dp"
-            app:srcCompat="@drawable/ic_call" />
-
-        <ImageView
-            android:id="@+id/reloj"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="160dp"
-            android:layout_marginTop="160dp"
-            app:srcCompat="@drawable/ic_alarm" />
+            app:srcCompat="@drawable/liiiineee"
+            android:layout_marginTop="210dp"
+            android:layout_marginLeft="40dp"/>
 
 
     </RelativeLayout>
