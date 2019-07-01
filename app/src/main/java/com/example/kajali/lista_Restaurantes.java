@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.example.kajali.Modelo.CustomAdapter;
@@ -35,6 +36,7 @@ public class lista_Restaurantes extends AppCompatActivity {
     ArrayList<Restaurantes> list;
     ListView lista;
   ImageButton btnLogin, btnMain, btnDetalle;
+
     private BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +91,8 @@ public class lista_Restaurantes extends AppCompatActivity {
                 return true;
             }
         });
+/////////////////////////////////////////////////////////////// RATING ////////////////////////////////////////////////////////////////////
+
     }//fin de oncreate
 
     public void createDatabase(){

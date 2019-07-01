@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.example.kajali.Modelo.Registro_Restaurantes;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     RadioButton rbtnAlajuela, rbtnCartago, rbtnGuanacaste, rbtnHeredia, rbtnLimon, rbtnPuntarenas, rbtnSanJose, rbtnTradicional, rbtnVegetariano, rbtnItaliano, rbtnChino;
     ImageView  imgR, imgP;
     Uri imagen1, imagen2;
+    private RatingBar ratingBar;
     private final int GALERIA_IMAGENES=1, CAMARA1=2, GALERIA=3, CAMARA2=4;
     private static final String NOMBRE_DB="appkajali";
     private static SQLiteDatabase db;
@@ -242,6 +244,14 @@ public class MainActivity extends AppCompatActivity {
 
         createDatabase();
 
+
+        ratingBar = (RatingBar)findViewById(R.id.ratingBar1);
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                Toast.makeText(MainActivity.this, "usted ha votado con:"+rating, Toast.LENGTH_LONG).show();
+            }
+        });
     }//fin de oncreate
 
 
